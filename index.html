@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>윷놀이 확률 시뮬레이터</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>윷놀이 확률 시뮬레이터</h1>
+        <p class="description">
+            윷놀이는 4개의 윷가락을 던져서 나오는 결과에 따라 말을 움직이는 한국 전통 놀이입니다.<br>
+            각 윷가락이 앞면(평평한 면)이 나올 확률 p를 조정하여 도, 개, 걸, 윷, 모가 나올 확률을 확인해보세요.
+        </p>
+
+        <div class="probability-control">
+            <label for="probability">앞면이 나올 확률 (p): <span id="prob-value">0.5</span></label>
+            <input type="range" id="probability" min="0" max="1" step="0.01" value="0.5">
+        </div>
+
+        <div class="results">
+            <div class="result-container">
+                <div class="yut-sticks">
+                    <div class="stick front"></div>
+                    <div class="stick back"></div>
+                    <div class="stick back"></div>
+                    <div class="stick back"></div>
+                </div>
+                <div class="result-name">도 (Do)</div>
+                <div class="result-desc">앞면 1개, 뒷면 3개</div>
+                <div class="probability" id="do-prob">0%</div>
+                <div class="bar-container">
+                    <div class="probability-bar" id="do-bar"></div>
+                </div>
+            </div>
+
+            <div class="result-container">
+                <div class="yut-sticks">
+                    <div class="stick front"></div>
+                    <div class="stick front"></div>
+                    <div class="stick back"></div>
+                    <div class="stick back"></div>
+                </div>
+                <div class="result-name">개 (Gae)</div>
+                <div class="result-desc">앞면 2개, 뒷면 2개</div>
+                <div class="probability" id="gae-prob">0%</div>
+                <div class="bar-container">
+                    <div class="probability-bar" id="gae-bar"></div>
+                </div>
+            </div>
+
+            <div class="result-container">
+                <div class="yut-sticks">
+                    <div class="stick front"></div>
+                    <div class="stick front"></div>
+                    <div class="stick front"></div>
+                    <div class="stick back"></div>
+                </div>
+                <div class="result-name">걸 (Geol)</div>
+                <div class="result-desc">앞면 3개, 뒷면 1개</div>
+                <div class="probability" id="geol-prob">0%</div>
+                <div class="bar-container">
+                    <div class="probability-bar" id="geol-bar"></div>
+                </div>
+            </div>
+
+            <div class="result-container">
+                <div class="yut-sticks">
+                    <div class="stick front"></div>
+                    <div class="stick front"></div>
+                    <div class="stick front"></div>
+                    <div class="stick front"></div>
+                </div>
+                <div class="result-name">윷 (Yut)</div>
+                <div class="result-desc">앞면 4개, 뒷면 0개</div>
+                <div class="probability" id="yut-prob">0%</div>
+                <div class="bar-container">
+                    <div class="probability-bar" id="yut-bar"></div>
+                </div>
+            </div>
+
+            <div class="result-container">
+                <div class="yut-sticks">
+                    <div class="stick back"></div>
+                    <div class="stick back"></div>
+                    <div class="stick back"></div>
+                    <div class="stick back"></div>
+                </div>
+                <div class="result-name">모 (Mo)</div>
+                <div class="result-desc">앞면 0개, 뒷면 4개</div>
+                <div class="probability" id="mo-prob">0%</div>
+                <div class="bar-container">
+                    <div class="probability-bar" id="mo-bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="formula-section">
+            <h2>확률 계산 공식</h2>
+            <p>윷놀이에서 각 결과가 나올 확률은 이항분포를 따릅니다.</p>
+            <ul>
+                <li>도(Do): C(4,1) × p<sup>1</sup> × (1-p)<sup>3</sup> = 4p(1-p)<sup>3</sup></li>
+                <li>개(Gae): C(4,2) × p<sup>2</sup> × (1-p)<sup>2</sup> = 6p<sup>2</sup>(1-p)<sup>2</sup></li>
+                <li>걸(Geol): C(4,3) × p<sup>3</sup> × (1-p)<sup>1</sup> = 4p<sup>3</sup>(1-p)</li>
+                <li>윷(Yut): C(4,4) × p<sup>4</sup> × (1-p)<sup>0</sup> = p<sup>4</sup></li>
+                <li>모(Mo): C(4,0) × p<sup>0</sup> × (1-p)<sup>4</sup> = (1-p)<sup>4</sup></li>
+            </ul>
+            <p>여기서 C(n,k)는 조합(Combination)을 의미합니다.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
